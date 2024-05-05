@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    
+    environment {
+        MY_ENV_VAR = "${env.VERSION}" // Assuming 'VERSION' is the parameter name for build version
+        REGION = "${env.region}"
+        CREDENTIALS="${env.credentials}"
+        DOCKERHUB_CREDENTIALS = credentials('your-dockerhub-credentials-id')
+        DOCKER_IMAGE = 'satyam4484/mern_cicd:${MY_ENV_VAR}'
+    }
+
+    stages {
+        stage('') {
+            steps {
+                echo "Display Name: ${REGION}"
+                echo "CREDENTIALS : ${CREDENTIALS}"
+                echo "Build Version: ${MY_ENV_VAR}"
+                echo 'Hello World'
+            }
+        }
+    }
+}
