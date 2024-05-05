@@ -10,12 +10,16 @@ pipeline {
     }
 
     stages {
-        stage('') {
+        stage('Checkout'){
+            steps{
+                echo "Cloning Done successfully starting to build"
+            }
+        }
+        stage('Building Docker Image') {
             steps {
-                echo "Display Name: ${REGION}"
-                echo "CREDENTIALS : ${CREDENTIALS}"
-                echo "Build Version: ${MY_ENV_VAR}"
-                echo 'Hello World'
+                script{
+                    sh 'docker build -t ${DOCKER_IMAGE} .'
+                }
             }
         }
     }
